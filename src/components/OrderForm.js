@@ -9,9 +9,6 @@ function OrderForm (props) {
     
     const {change,values,submit,disabled,errors } = props
 
-    
-    
-
     const onChange = evt => {
 
         const {name, value, checked, type} = evt.target
@@ -20,12 +17,12 @@ function OrderForm (props) {
         console.log(checked)
         console.log(type)
         
-
         const valueToUse = type === 'checkbox' ? checked : value
         change(name, valueToUse)
     }
 
     const onSubmit = evt => {
+        console.log(evt.target)
         evt.preventDefault()
         submit()
     }
@@ -40,18 +37,29 @@ function OrderForm (props) {
 
             {/* ------------------------  orderform below --------------------- */}
 
-            <div onSubmit={onSubmit} className='formContainer'>
+            <div className='formContainer'>
                 
-                <form>
+                <form onSubmit={onSubmit}>
     
                     <div>
                         <h2>Build Your Own Pizza</h2>
+                    </div>
+
+                    <div>
+                        <label> Full Name:
+                            <input
+                                name='name'
+                                type='text'
+                                value={values.name}
+                                onChange={onChange}
+                                />
+                        </label>
                     </div>
     
                     <label> Choice of Size: 
                         <select
                             onChange={onChange}
-                            value=''
+                            value={values.size}
                             name='size'
                         >
                             <option value=''>---- select ----- </option>
@@ -62,22 +70,15 @@ function OrderForm (props) {
                         </select>
                     </label>
     
-                    {/* <label> Choice of Sauce:
-                        <input name='Original Red' type='radio'onChange={onChange}/> Original Red
-                        <input name='Garlic Ranch' type='radio'onChange={onChange}/>Garlic Ranch
-                        <input name='BBQ Sauce' type='radio'onChange={onChange}/>BBQ Sauce
-                        <input name='Spinach Alfredo' type='radio'onChange={onChange}/>Spinach Alfredo
-                    </label> */}
-    
                     <div className='Add-Toppings'> 
 
                         <h4>Add Toppings:</h4>
                         
                         <label> pepperoni
                             <input 
-                                name='pepperoni' 
                                 type='checkbox' 
-                                checked={values.pepperoni=== 'pepperoni'} 
+                                name='pepperoni' 
+                                checked={values.pepperoni} 
                                 onChange={onChange}
                             />
                         </label>  
@@ -86,7 +87,7 @@ function OrderForm (props) {
                             <input 
                                 name='bacon' 
                                 type='checkbox'
-                                checked={values.bacon === 'bacon'}
+                                checked={values.bacon}
                                 onChange={onChange}
                             />
                         </label>
@@ -95,7 +96,7 @@ function OrderForm (props) {
                             <input 
                                 name='onion' 
                                 type='checkbox'
-                                checked={values.onion === 'onion'}
+                                checked={values.onion}
                                 onChange={onChange}
                             />
                         </label>
@@ -104,7 +105,7 @@ function OrderForm (props) {
                             <input 
                                 name='peppers' 
                                 type='checkbox'
-                                checked={values.peppers === 'peppers'}
+                                checked={values.peppers}
                                 onChange={onChange}
                             />
                         </label>
@@ -113,7 +114,7 @@ function OrderForm (props) {
                             <input 
                                 name='dicedTomatoes' 
                                 type='checkbox' 
-                                checked={values.dicedTomatoes=== 'dicedTomatoes'} 
+                                checked={values.dicedTomatoes} 
                                 onChange={onChange}
                             />
                         </label>
@@ -127,7 +128,7 @@ function OrderForm (props) {
                                 <input 
                                     name='glutenFree' 
                                     type='checkbox' 
-                                    checked={values.glutenFree === 'glutenFree'}
+                                    checked={values.glutenFree}
                                     onChange={onChange}
                                 />
                             </label>
@@ -136,11 +137,21 @@ function OrderForm (props) {
                     
                     <div>
                         <label> Special Instructions
-                            <input name='instructions' type='text'></input>
+                            <input 
+                                name='instructions' 
+                                type='text'
+                                value={values.instructions}
+                                onChange={onChange}
+                            />
                         </label>
                     </div>
-    
-                    <button >Add to Order</button>
+                    
+                    
+                    
+                        <button>Add to Order</button>
+                    
+                    
+                    
                 </form>
             </div> 
             

@@ -5,6 +5,7 @@ import * as yup from 'yup'
 
 // import Components
 import Home from './components/Home'
+import OrderConfirmation from "./components/OrderConfirmation";
 import OrderForm from './components/OrderForm'
 import orderFormSchema from "./validation/orderFormSchema";
 
@@ -13,7 +14,8 @@ const initialOrdersListData = [];
 
 
 const initialOrderForm = {
- 
+  //text input
+  name: '',
   //dropdown
   size: '',
 
@@ -65,11 +67,13 @@ const App = () => {
         ...orderForm, [name]: value
       })
 
-
+      console.log(orderForm)
   }
+
   
   const formSubmit = () => {
     const newOrder = {
+      name:orderForm.name,
       size: orderForm.size,
       pepperoni: orderForm.pepperoni,
       bacon: orderForm.bacon,
@@ -77,7 +81,7 @@ const App = () => {
       peppers: orderForm.peppers,
       dicedTomatoes: orderForm.dicedTomatoes,
       glutenFree: orderForm.glutenFree,
-      instructions: orderForm.instructions,
+      instructions: orderForm.instructions.trim(),
     }
 
       postNewOrder(newOrder)
@@ -96,9 +100,6 @@ const App = () => {
   }
   
   
-  
-  
-  
   return (
     <div>
       <Switch>
@@ -110,6 +111,7 @@ const App = () => {
               submit = {formSubmit}
               disabled = {disabled}
               errors = {formErrors}
+              
             
             />
         </Route>
@@ -118,7 +120,17 @@ const App = () => {
             <Home/>
         </Route>
 
+
+        
       </Switch>
+
+      <OrderConfirmation
+        values={ordersList}
+      />
+      
+      
+      
+     
     </div>
   );
 };
