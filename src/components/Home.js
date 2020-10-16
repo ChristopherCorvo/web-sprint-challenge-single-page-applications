@@ -4,8 +4,6 @@ import { Route, Link, Switch } from "react-router-dom";
 const Home = (props) => {
     
     
-    
-    
     return (
         <div>
             <Link to= {'/pizza'}>

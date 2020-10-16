@@ -1,15 +1,33 @@
 import React from 'react'
 import { Route, Link, Switch } from "react-router-dom";
 
+import styled from 'styled-components'
+
+
 
 function OrderForm (props) {
     
-    const { } = props
+    const {change,values,submit,disabled,errors } = props
 
-    const onChange = evt => {}
+    
+    
+
+    const onChange = evt => {
+
+        const {name, value, checked, type} = evt.target
+        console.log(name)
+        console.log(value)
+        console.log(checked)
+        console.log(type)
+        
+
+        const valueToUse = type === 'checkbox' ? checked : value
+        change(name, valueToUse)
+    }
 
     const onSubmit = evt => {
         evt.preventDefault()
+        submit()
     }
 
     return (
@@ -34,7 +52,7 @@ function OrderForm (props) {
                         <select
                             onChange={onChange}
                             value=''
-                            name='Choice of Size'
+                            name='size'
                         >
                             <option value=''>---- select ----- </option>
                             <option value='Small'>Small</option>
@@ -44,31 +62,83 @@ function OrderForm (props) {
                         </select>
                     </label>
     
-                    <label> Choice of Sauce:
+                    {/* <label> Choice of Sauce:
                         <input name='Original Red' type='radio'onChange={onChange}/> Original Red
                         <input name='Garlic Ranch' type='radio'onChange={onChange}/>Garlic Ranch
                         <input name='BBQ Sauce' type='radio'onChange={onChange}/>BBQ Sauce
                         <input name='Spinach Alfredo' type='radio'onChange={onChange}/>Spinach Alfredo
-                    </label>
+                    </label> */}
     
-                    <label> Add Toppings:
+                    <div className='Add-Toppings'> 
+
+                        <h4>Add Toppings:</h4>
                         
-                        <input name='pepperoni' type='checkbox' checked='' onChange={onChange}/>pepperoni
-                        <input name ='sausage'type= 'checkbox'checked=''onChange={onchange}/> sausage
-                        <input name='bacon' type='checkbox'checked=''onChange={onChange}/>bacon
-                        <input name='Onion' type='checkbox'checked=''onChange={onChange}/>Onion
-                        <input name='Peppers' type='checkbox'checked=''onChange={onChange}/>Peppers
-                        <input name='Diced Tomatoes' type='checkbox'checked=''onChange={onChange}/>Diced Tomatoes
+                        <label> pepperoni
+                            <input 
+                                name='pepperoni' 
+                                type='checkbox' 
+                                checked={values.pepperoni=== 'pepperoni'} 
+                                onChange={onChange}
+                            />
+                        </label>  
+
+                        <label>bacon
+                            <input 
+                                name='bacon' 
+                                type='checkbox'
+                                checked={values.bacon === 'bacon'}
+                                onChange={onChange}
+                            />
+                        </label>
+
+                        <label>onion
+                            <input 
+                                name='onion' 
+                                type='checkbox'
+                                checked={values.onion === 'onion'}
+                                onChange={onChange}
+                            />
+                        </label>
+
+                        <label>peppers
+                            <input 
+                                name='peppers' 
+                                type='checkbox'
+                                checked={values.peppers === 'peppers'}
+                                onChange={onChange}
+                            />
+                        </label>
+
+                        <label>diced tomatoes
+                            <input 
+                                name='dicedTomatoes' 
+                                type='checkbox' 
+                                checked={values.dicedTomatoes=== 'dicedTomatoes'} 
+                                onChange={onChange}
+                            />
+                        </label>
     
-                    </label>
-    
-                    <label> Choice of Substitute:
-                        <input name='Gluten Free' type='checkbox'onChange={onChange}/>Gluten Free
-                    </label>
-    
-                    <label> Special Instructions
-                        <input name='' type='text'></input>
-                    </label>
+                    </div> 
+                    {/* closing div for Add-Toppings Section  */}
+                    
+                    <div className='gluten-free'>
+                        <label> Choice of Substitute:
+                            <label>Gluten Free
+                                <input 
+                                    name='glutenFree' 
+                                    type='checkbox' 
+                                    checked={values.glutenFree === 'glutenFree'}
+                                    onChange={onChange}
+                                />
+                            </label>
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <label> Special Instructions
+                            <input name='instructions' type='text'></input>
+                        </label>
+                    </div>
     
                     <button >Add to Order</button>
                 </form>
