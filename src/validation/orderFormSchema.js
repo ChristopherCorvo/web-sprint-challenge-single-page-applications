@@ -28,7 +28,8 @@ const orderFormSchema = yup.object().shape({
 
     glutenFree:yup
         .boolean(),
-
+    instructions: yup
+        .string()
 })
 
 export default orderFormSchema
