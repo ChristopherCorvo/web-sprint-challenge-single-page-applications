@@ -3,7 +3,8 @@ import * as yup from 'yup'
 const orderFormSchema = yup.object().shape({
     
     name: yup 
-        .string(),
+        .string()
+        .required(3, "Must have more than three characters"),
     size: yup
         .string()
         .email("Must be a valid email address.") // this is an error

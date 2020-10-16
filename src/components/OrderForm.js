@@ -3,6 +3,54 @@ import { Route, Link, Switch } from "react-router-dom";
 
 import styled from 'styled-components'
 
+const FormContainer = styled.div`
+    display: flex; 
+    justify-content: center;
+`
+
+const FormWrapper = styled.form`
+    display: flex;
+    flex-direction: column;
+    background-color: mistyrose;
+    justify-content:center;
+    width: 52%;
+    border-radius: 10px;
+    border: 2px solid darkgray;
+    box-shadow: 2px 2px 2px darkgray;
+    margin-top: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+
+    .fullName{
+        margin-bottom: 2%;
+    }
+    .glutenFree{
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .instructions{
+        margin-bottom: 2%;
+    }
+`
+
+const Toppings = styled.div`
+    display:flex;
+    margin-top:4%;
+
+    .toppingColumn1{
+        display: flex;
+        flex-direction: column;
+        margin-right: 2%;
+        margin-left: 2%;
+    }
+
+    .toppingColumn2{
+        display:flex;
+        flex-direction: column;
+    }
+`
 
 
 function OrderForm (props) {
@@ -30,22 +78,20 @@ function OrderForm (props) {
     return (
         <div>
             <Link to= {'/'}>
-                <div  className="home-button">Home</div>
+                <button className="homeButton">Lambda Eats</button>
             </Link>
-
-            <h1> Order Form </h1>
 
             {/* ------------------------  orderform below --------------------- */}
 
-            <div className='formContainer'>
+            <FormContainer>
                 
-                <form onSubmit={onSubmit}>
+                <FormWrapper onSubmit={onSubmit}>
     
                     <div>
                         <h2>Build Your Own Pizza</h2>
                     </div>
 
-                    <div>
+                    <div className='fullName'>
                         <label> Full Name:
                             <input
                                 name='name'
@@ -70,59 +116,65 @@ function OrderForm (props) {
                         </select>
                     </label>
     
-                    <div className='Add-Toppings'> 
+                    <Toppings> 
 
-                        <h4>Add Toppings:</h4>
+                        <h4>Toppings</h4>
                         
-                        <label> pepperoni
-                            <input 
-                                type='checkbox' 
-                                name='pepperoni' 
-                                checked={values.pepperoni} 
-                                onChange={onChange}
-                            />
-                        </label>  
+                        <div className='toppingColumn1'>
+                            
+                                <label> pepperoni
+                                    <input 
+                                        type='checkbox' 
+                                        name='pepperoni' 
+                                        checked={values.pepperoni} 
+                                        onChange={onChange}
+                                    />
+                                </label>  
 
-                        <label>bacon
-                            <input 
-                                name='bacon' 
-                                type='checkbox'
-                                checked={values.bacon}
-                                onChange={onChange}
-                            />
-                        </label>
+                                <label>bacon
+                                    <input 
+                                        name='bacon' 
+                                        type='checkbox'
+                                        checked={values.bacon}
+                                        onChange={onChange}
+                                    />
+                                </label>
 
-                        <label>onion
-                            <input 
-                                name='onion' 
-                                type='checkbox'
-                                checked={values.onion}
-                                onChange={onChange}
-                            />
-                        </label>
-
-                        <label>peppers
-                            <input 
-                                name='peppers' 
-                                type='checkbox'
-                                checked={values.peppers}
-                                onChange={onChange}
-                            />
-                        </label>
-
-                        <label>diced tomatoes
-                            <input 
-                                name='dicedTomatoes' 
-                                type='checkbox' 
-                                checked={values.dicedTomatoes} 
-                                onChange={onChange}
-                            />
-                        </label>
+                                <label>onion
+                                    <input 
+                                        name='onion' 
+                                        type='checkbox'
+                                        checked={values.onion}
+                                        onChange={onChange}
+                                    />
+                                </label>
+                            
+                        </div>
+                        
+                        <div className='toppingColumn2'>
+                            <label>peppers
+                                <input 
+                                    name='peppers' 
+                                    type='checkbox'
+                                    checked={values.peppers}
+                                    onChange={onChange}
+                                />
+                            </label>
+                            
+                            <label>diced tomatoes
+                                <input 
+                                    name='dicedTomatoes' 
+                                    type='checkbox' 
+                                    checked={values.dicedTomatoes} 
+                                    onChange={onChange}
+                                />
+                            </label>
+                        </div>
     
-                    </div> 
+                    </Toppings> 
                     {/* closing div for Add-Toppings Section  */}
                     
-                    <div className='gluten-free'>
+                    <div className='glutenFree'>
                         <label> Choice of Substitute:
                             <label>Gluten Free
                                 <input 
@@ -135,7 +187,7 @@ function OrderForm (props) {
                         </label>
                     </div>
                     
-                    <div>
+                    <div className='instructions'>
                         <label> Special Instructions
                             <input 
                                 name='instructions' 
@@ -152,8 +204,8 @@ function OrderForm (props) {
                     
                     
                     
-                </form>
-            </div> 
+                </FormWrapper>
+            </FormContainer> 
             
         </div>
     )
