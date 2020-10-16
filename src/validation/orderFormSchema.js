@@ -4,11 +4,12 @@ const orderFormSchema = yup.object().shape({
     
     name: yup 
         .string()
-        .required(3, "Must have more than three characters"),
+        .min(3, "Must have more than three characters")
+        .required('You must input a name.'),
     size: yup
         .string()
-        .email("Must be a valid email address.") // this is an error
-        .required("Must include email address."), 
+        .oneOf(['Small', 'Medium', 'Large', 'X-Large'], "You must select a size")
+        .required('You must select a size'),
     
     pepperoni: yup
         .boolean(),
@@ -27,9 +28,6 @@ const orderFormSchema = yup.object().shape({
 
     glutenFree:yup
         .boolean(),
-
-    instructions: yup
-        .string(),
 
 })
 

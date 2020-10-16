@@ -33,6 +33,10 @@ const FormWrapper = styled.form`
     .instructions{
         margin-bottom: 2%;
     }
+
+    .errors{
+        margin-top:2%;
+    }
 `
 
 const Toppings = styled.div`
@@ -64,6 +68,7 @@ function OrderForm (props) {
         console.log(value)
         console.log(checked)
         console.log(type)
+        console.log(errors)
         
         const valueToUse = type === 'checkbox' ? checked : value
         change(name, valueToUse)
@@ -175,7 +180,7 @@ function OrderForm (props) {
                     {/* closing div for Add-Toppings Section  */}
                     
                     <div className='glutenFree'>
-                        <label> Choice of Substitute:
+                        <label> Choice of Substitute: <span></span>
                             <label>Gluten Free
                                 <input 
                                     name='glutenFree' 
@@ -188,7 +193,7 @@ function OrderForm (props) {
                     </div>
                     
                     <div className='instructions'>
-                        <label> Special Instructions
+                        <label> Special Instructions: <span></span>
                             <input 
                                 name='instructions' 
                                 type='text'
@@ -199,10 +204,20 @@ function OrderForm (props) {
                     </div>
                     
                     
+                   
+
+                        <button disabled={disabled}>Add to Order</button>
+
+                         {/* RENDERED THE VALIDATION ERRORS HERE */}
+                        <div className='errors'>
+                            <div>{errors.name}</div>
+                            <div>{errors.size}</div>
+                            {/* <div>{errors.role}</div>
+                            <div>{errors.civil}</div> */}
+                        </div>
                     
-                        <button>Add to Order</button>
-                    
-                    
+                        
+                        
                     
                 </FormWrapper>
             </FormContainer> 

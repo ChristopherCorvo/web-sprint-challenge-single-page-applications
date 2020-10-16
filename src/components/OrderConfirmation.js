@@ -13,7 +13,7 @@ const OrderConfirmationCard = styled.div`
     flex-direction: column;
     background-color: mistyrose;
     height: 40vh;
-    width: 52%;
+    width: 54%;
     border-radius: 10px;
     box-shadow: 2px 2px 2px darkgray;
     border: 2px solid darkgray;

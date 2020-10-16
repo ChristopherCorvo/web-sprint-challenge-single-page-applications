@@ -99,6 +99,12 @@ const App = () => {
         setOrderForm(initialOrderForm))
   }
   
+  useEffect(() => {
+    orderFormSchema.isValid(orderForm)
+      .then(valid => {
+        setDisabled(!valid);
+      })
+  }, [orderForm])
   
   return (
     <div>
